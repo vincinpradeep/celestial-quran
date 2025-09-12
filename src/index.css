@@ -1,33 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Quran Connect - Islamic Design System
+   Colors inspired by traditional Islamic art and calligraphy
+   All colors MUST be HSL.
 */
 
 @layer base {
   :root {
+    /* Islamic Green - Primary palette */
     --background: 0 0% 100%;
-    --foreground: 160 84% 9%;
+    --foreground: 158 30% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 160 84% 9%;
+    --card-foreground: 158 30% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 160 84% 9%;
+    --popover-foreground: 158 30% 15%;
 
-    --primary: 160 84% 39%;
+    --primary: 158 64% 25%;
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 160 40% 96%;
-    --secondary-foreground: 160 84% 15%;
+    --secondary: 158 20% 95%;
+    --secondary-foreground: 158 30% 15%;
 
-    --muted: 160 40% 96%;
-    --muted-foreground: 160 16% 47%;
+    --muted: 158 20% 95%;
+    --muted-foreground: 158 15% 45%;
 
-    --accent: 45 93% 47%;
-    --accent-foreground: 160 84% 15%;
+    /* Islamic Gold - Accent */
+    --accent: 45 100% 35%;
+    --accent-foreground: 0 0% 98%;
+
+    /* Islamic Theme Colors */
+    --islamic-gold: 45 100% 35%;
+    --islamic-gold-light: 45 100% 85%;
+    --islamic-green: 158 64% 25%;
+    --islamic-green-light: 158 50% 90%;
+    --islamic-teal: 174 64% 30%;
+    
+    /* Gradients */
+    --gradient-islamic: linear-gradient(135deg, hsl(158, 64%, 25%) 0%, hsl(174, 64%, 30%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(45, 100%, 35%) 0%, hsl(45, 100%, 45%) 100%);
+    --gradient-subtle: linear-gradient(135deg, hsl(158, 20%, 98%) 0%, hsl(158, 30%, 96%) 100%);
+    
+    /* Arabic Typography */
+    --font-arabic: 'Amiri', serif;
+    --font-body: 'Inter', sans-serif;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -56,26 +77,33 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 160 84% 4%;
-    --foreground: 160 40% 98%;
+    --background: 158 30% 8%;
+    --foreground: 158 20% 95%;
 
-    --card: 160 84% 4%;
-    --card-foreground: 160 40% 98%;
+    --card: 158 30% 10%;
+    --card-foreground: 158 20% 95%;
 
-    --popover: 160 84% 4%;
-    --popover-foreground: 160 40% 98%;
+    --popover: 158 30% 10%;
+    --popover-foreground: 158 20% 95%;
 
-    --primary: 160 40% 98%;
-    --primary-foreground: 160 84% 15%;
+    --primary: 158 50% 60%;
+    --primary-foreground: 158 30% 8%;
 
-    --secondary: 160 33% 17%;
-    --secondary-foreground: 160 40% 98%;
+    --secondary: 158 20% 15%;
+    --secondary-foreground: 158 20% 90%;
 
-    --muted: 160 33% 17%;
-    --muted-foreground: 160 20% 65%;
+    --muted: 158 20% 15%;
+    --muted-foreground: 158 15% 60%;
 
-    --accent: 45 93% 47%;
-    --accent-foreground: 160 40% 98%;
+    --accent: 45 100% 45%;
+    --accent-foreground: 0 0% 5%;
+
+    /* Dark mode Islamic colors */
+    --islamic-gold: 45 100% 45%;
+    --islamic-gold-light: 45 80% 25%;
+    --islamic-green: 158 50% 60%;
+    --islamic-green-light: 158 30% 20%;
+    --islamic-teal: 174 50% 50%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
@@ -94,12 +122,54 @@ All colors MUST be HSL.
   }
 }
 
+@layer utilities {
+  .font-arabic {
+    font-family: var(--font-arabic);
+  }
+  
+  .font-body {
+    font-family: var(--font-body);
+  }
+  
+  .text-islamic-gold {
+    color: hsl(var(--islamic-gold));
+  }
+  
+  .text-islamic-green {
+    color: hsl(var(--islamic-green));
+  }
+  
+  .bg-gradient-islamic {
+    background: var(--gradient-islamic);
+  }
+  
+  .bg-gradient-gold {
+    background: var(--gradient-gold);
+  }
+  
+  .bg-gradient-subtle {
+    background: var(--gradient-subtle);
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body;
+  }
+  
+  .arabic-text {
+    @apply font-arabic text-right leading-loose;
+    font-size: 1.5rem;
+    line-height: 2.5;
+  }
+  
+  .verse-number {
+    @apply inline-flex items-center justify-center w-8 h-8 rounded-full text-sm font-semibold;
+    background: hsl(var(--islamic-gold));
+    color: hsl(var(--accent-foreground));
   }
 }
